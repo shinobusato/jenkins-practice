@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'echo Webhook triggerd3!'
+        sh 'echo Webhook triggerd!'
       }
     }
 
