@@ -26,8 +26,10 @@ pipeline {
 
     stage('Deploy') {
       steps {
+        sh 'env | grep BRANCH'
+        sh 'env | grep GIT'
         script {
-          if (env.BRANCH_NAME == 'main') {
+          if (env.GIT_BRANCH == 'main') {
             sh 'echo Deploy to STG'
           } else {
             sh 'echo Deploy to DEV'
