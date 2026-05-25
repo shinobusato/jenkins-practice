@@ -4,6 +4,9 @@ pipeline {
   environment {
     IMAGE_NAME = "jenkins-practice"
   }
+  parameters {
+    choice(name: 'ENV', choices: ['dev', 'stg'])
+  }
 
   stages {
     stage('Checkout') {
@@ -26,7 +29,13 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'echo Deploying...'
+        script {
+          if (params.ENV == 'dev') {
+            sh 'echo Deploy to DEV'
+          } else {
+            sh 'echo Deploy to STG'
+          }
+        }
       }
     }
   }
