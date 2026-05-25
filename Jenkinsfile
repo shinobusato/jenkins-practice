@@ -22,7 +22,7 @@ pipeline {
       steps {
         sh 'docker run --rm $IMAGE_NAME'
       }
-    }
+     }
 
     stage('Deploy') {
       steps {
