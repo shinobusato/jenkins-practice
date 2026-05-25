@@ -29,7 +29,7 @@ pipeline {
         sh 'env | grep BRANCH'
         sh 'env | grep GIT'
         script {
-          if (env.GIT_BRANCH == 'original/main') {
+          if (env.GIT_BRANCH == 'origin/main') {
             sh 'echo Deploy to STG'
           } else {
             sh 'echo Deploy to DEV'
