@@ -1,18 +1,33 @@
 pipeline {
   agent any
 
+  environment {
+    IMAGE_NAME = "jenkins-practice"
+  }
+
   stages {
-    stage('Build') {
+    stage('Checkout') {
       steps {
-        sh 'echo Webhook triggerd!'
+        checkout scm
       }
     }
 
-    stage('Test') {
+    stage('Build Docker') {
       steps {
-        sh 'echo Testing...'
+        sh 'docker build -t $IMAGE_NAME .'
+      }
+    }
+
+    stage('Run Test') {
+      steps {
+        sh 'docker run --rm $IMAGE_NAME'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh 'echo Deploying...'
       }
     }
   }
 }
-
